@@ -10,7 +10,7 @@ var lecturerRouter = require('./routes/lecture')
 
 var mongoose = require('mongoose')
 //var db = "mongodb://localhost:27017/greenwich";
-var db = 'mongodb+srv://admin:<admin>@cluster0.nrru4jv.mongodb.net/greenwich'
+var db = 'mongodb+srv://admin:admin@cluster0.nrru4jv.mongodb.net/greenwich'
 mongoose.connect(db, { useNewUrlParser: true})
 
 var app = express();
