@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 
 var mongoose = require('mongoose')
 var url = 'mongodb+srv://admin:<admin>@cluster0.nrru4jv.mongodb.net/cloud'
-mongoose.connect(url { useNewUrlParser: true}, err => {
+mongoose.connect(url, { useNewUrlParser: true}, err => {
   if (!err) {
     console.log('connect')
   }else{
