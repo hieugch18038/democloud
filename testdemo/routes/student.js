@@ -12,6 +12,15 @@ router.get('/', (req, res) => {
     }
   })
 })
+
+router.get('/detail/:id', (req, res) => {
+  StudentModel.findById(req.params.id, (err, student) => {
+    if (!err) {
+      res.render('student/info', {student : student})
+    }
+  })
+})
+
 router.get('/api', (req, res) => {
   StudentModel.find((err, data) => {
     if (!err) {
@@ -71,5 +80,6 @@ router.post('/edit/:id', (req, res) => {
     }
   })
 })
+
 
 module.exports = router
