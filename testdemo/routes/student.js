@@ -3,6 +3,7 @@ const { render } = require('../app')
 const StudentModel = require('../models/StudentModel')
 const router = express.Router()
 
+
 router.get('/', (req, res) => {
   StudentModel.find((err, data) => {
     if (!err) {
@@ -81,5 +82,36 @@ router.post('/edit/:id', (req, res) => {
   })
 })
 
+//search function
+router.post('/search', (req, res) => {
+  console.log("test Search")
+
+  StudentModel.find({ name: new RegExp(req.body.name, "i") }, (err, data) => {
+      if (!err) {
+          res.render('student/index', { students: data })
+      }
+  })
+})
+//sort function
+router.get('/sort/asc', (req, res) => {
+  console.log("test sort asc")
+  StudentModel.find()
+      .sort({ name: 1 })
+      .exec((err, data) => {
+          if (!err) {
+              res.render('student/index', { students: data })
+          }
+      })
+})
+router.get('/sort/desc', (req, res) => {
+  console.log("test sort desc")
+  StudentModel.find()
+      .sort({ name: -1 })
+      .exec((err, data) => {
+          if (!err) {
+              res.render('student/index', { students: data })
+          }
+      })
+})
 
 module.exports = router
