@@ -3,6 +3,12 @@ const { render } = require('../app')
 const StudentModel = require('../models/StudentModel')
 const router = express.Router()
 
+router.get('/drop', (req, res) => {
+  StudentModel.deleteMany({}, () => {
+      console.log("Delete all data succeed !")
+      res.redirect('/student')
+  })
+})
 
 router.get('/', (req, res) => {
   StudentModel.find((err, data) => {
@@ -11,6 +17,16 @@ router.get('/', (req, res) => {
       //render ra trang index ở thư mục views/student
       res.render('student/index', { students: data })
     }
+  })
+})
+
+router.get('/api', (req, res) => {
+  StudentModel.find((err, data) => {
+      if (!err) {
+          //res.send(data)
+          //render ra trang index ở thư mục views/student
+          res.json(data)
+      }
   })
 })
 
